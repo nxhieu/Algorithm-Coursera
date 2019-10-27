@@ -7,8 +7,8 @@ function quickSort(array, left, right) {
   if (left < right) {
     let pivotPosition = partitionArray(array, left, right);
     //recursively sort the 2nd half
-    quickSort(array, pivotPosition + 1, right);
-    quickSort(array, left, pivotPosition - 1);
+    quickSort(array, pivotPosition, right);
+    quickSort(array, left, pivotPosition - 2);
   }
 }
 
@@ -17,9 +17,9 @@ function partitionArray(array, left, right) {
   counts[0] = counts[0] + right - left;
   const pivotElement = array[right];
   // The position of the middlepart between 2 subarrays
-  let i = left;
-
-  for (let j = i; j < right; j++) {
+  let i = left + 1;
+  swap(array, right, left);
+  for (let j = i; j <= right; j++) {
     if (array[j] <= pivotElement) {
       let tempElement = array[i];
       array[i] = array[j];
@@ -28,9 +28,15 @@ function partitionArray(array, left, right) {
     }
   }
   //swap the pivot element with the right most element which is smaller than the pivot
-  array[right] = array[i];
-  array[i] = pivotElement;
+  array[left] = array[i - 1];
+  array[i - 1] = pivotElement;
   return i;
+}
+
+function swap(array, i, j) {
+  let temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
 }
 
 const counts = [0];
