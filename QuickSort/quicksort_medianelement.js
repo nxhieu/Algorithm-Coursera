@@ -1,6 +1,6 @@
 const readInput = require("../utils/readInterger");
 
-const array = readInput("QuickSort", "QuickSort.txt");
+const array = readInput("QuickSort", "testcase.txt");
 let loop = 0;
 //Quick sort function
 function quickSort(array, left, right) {
