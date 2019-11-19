@@ -1,44 +1,70 @@
 const readInterger = require("../utils/readInterger");
 const array = readInterger("Median", "Median.txt");
 
-console.log(array);
-const minHeap = require("./MinHeap");
-const maxHeap = require("./MaxHeap");
+// console.log(array);
+const MinHeap = require("./MinHeap");
+const MaxHeap = require("./MaxHeap");
 
-let minheap = new minHeap();
+let minheap = new MinHeap();
+let maxheap = new MaxHeap();
+
+let median = [];
 let i = 0;
 while (array.length > i) {
+  // minheap.insert(array[i]);
+  // maxheap.insert(array[i]);
+
+  medianMaintain(array[i]);
+
   i++;
 }
-console.log(i);
 
-minheap.insert(3);
+function medianMaintain(number) {
+  if (number < maxheap.getMax() || !maxheap.getMax()) {
+    maxheap.insert(number);
+  } else {
+    minheap.insert(number);
+  }
+  if (minheap.getLength() - 1 > maxheap.getLength()) {
+    let min = minheap.extractMin();
+    maxheap.insert(min);
+  } else if (maxheap.getLength() - 1 > minheap.getLength()) {
+    let max = maxheap.extractMax();
+    minheap.insert(max);
+  }
+  // console.log("minheap ", minheap, "maxheap", maxheap);
+  addMedian();
+}
 
-minheap.insert(4);
+function addMedian() {
+  let totalLength = minheap.getLength() + maxheap.getLength();
+  // console.log(totalLength);
+  // console.log(isOdd(totalLength));
+  if (isOdd(totalLength)) {
+    if (minheap.getLength() > maxheap.getLength()) {
+      median.push(minheap.getMin());
+    } else {
+      median.push(maxheap.getMax());
+    }
+  } else {
+    // let average = (maxheap.getMax() + minheap.getMin()) / 2;
+    median.push(maxheap.getMax());
+  }
+  // console.log(totalLength);
+  // console.log(median);
+  // let medianIndex = Math.ceil(totalLength / 2);
+}
 
-minheap.insert(6);
+function isOdd(number) {
+  return number % 2 == 1;
+}
 
-minheap.insert(7);
-
-minheap.insert(8);
-
-// console.log(minheap.extractMin());
-// console.log(minheap.extractMin());
-
-console.log(minheap);
-
-let maxheap = new maxHeap();
-
-maxheap.insert(3);
-
-maxheap.insert(4);
-
-maxheap.insert(6);
-
-maxheap.insert(7);
-
-maxheap.insert(8);
-
-maxheap.extractMax();
-
-console.log(maxheap);
+let sum = 0;
+for (let i = 0; i < median.length; i++) {
+  sum = sum + median[i];
+}
+console.log(sum % 10000);
+// minheap.extractMin();
+// minheap.extractMin();
+// minheap.extractMin();
+// console.log(minheap);

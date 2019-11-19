@@ -9,6 +9,10 @@ class MaxHeap {
     return this.heapContainer[1];
   }
 
+  getLength() {
+    return this.heapContainer.length;
+  }
+
   insert(node) {
     /* insert node to latest element */
     this.heapContainer[this.heapContainer.length] = node;

@@ -15,25 +15,25 @@ class MinHeap {
     return this.heapContainer.length;
   }
 
+  _swap(index1, index2) {
+    let temp = this.heapContainer[index1];
+    this.heapContainer[index1] = this.heapContainer[index2];
+    this.heapContainer[index2] = temp;
+  }
+
   insert(node) {
-    // this.heapContainer.push(node);
     this.heapContainer[this.heapContainer.length] = node;
-    if (this.heapContainer.length > 1) {
-      let position = this.heapContainer.length - 1;
-      /* traversing the tree until the node current is greater than its parent */
-      while (
-        position > 1 &&
-        this.heapContainer[position] <
-          this.heapContainer[Math.floor(position / 2)]
-      ) {
-        /* bubble up swaping two node */
-        let temp = this.heapContainer[position];
-        this.heapContainer[position] = this.heapContainer[
-          Math.floor(position / 2)
-        ];
-        this.heapContainer[Math.floor(position / 2)] = temp;
-        position = Math.floor[position / 2];
-      }
+
+    let position = this.heapContainer.length - 1;
+    /* traversing the tree until the node current is greater than its parent */
+    while (
+      position > 1 &&
+      this.heapContainer[position] <
+        this.heapContainer[Math.floor(position / 2)]
+    ) {
+      /* bubble up swaping two node */
+      this._swap(position, Math.floor(position / 2));
+      position = Math.floor(position / 2);
     }
   }
   extractMin() {
@@ -53,7 +53,7 @@ class MinHeap {
 
       while (
         (this.heapContainer[leftParentIndex] &&
-          this.heapContainer[rightParentIndex] == undefined &&
+          this.heapContainer[rightParentIndex] &&
           this.heapContainer[leftParentIndex] <= this.heapContainer[current]) ||
         this.heapContainer[rightParentIndex] <= this.heapContainer[current]
       ) {
@@ -63,15 +63,11 @@ class MinHeap {
         ) {
           // swap with left parent child
 
-          let temp = this.heapContainer[leftParentIndex];
-          this.heapContainer[leftParentIndex] = this.heapContainer[current];
-          this.heapContainer[current] = temp;
+          this._swap(leftParentIndex, current);
           current = leftParentIndex;
         } else {
           // swap with right parent child
-          let temp = this.heapContainer[rightParentIndex];
-          this.heapContainer[rightParentIndex] = this.heapContainer[current];
-          this.heapContainer[current] = temp;
+          this._swap(rightParentIndex, current);
           current = rightParentIndex;
         }
 
@@ -84,10 +80,7 @@ class MinHeap {
           if (
             this.heapContainer[leftParentIndex] < this.heapContainer[current]
           ) {
-            let temp = this.heapContainer[leftParentIndex];
-            this.heapContainer[leftParentIndex] = this.heapContainer[current];
-            this.heapContainer[current] = temp;
-            break;
+            this._swap(leftParentIndex, current);
           }
         }
       }
