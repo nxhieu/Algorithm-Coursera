@@ -30,7 +30,7 @@ function Dijkstra(A, VX) {
   addVertex(0, 1);
 
   // Main while loop
-  while (i <= 199) {
+  while (i <= 198) {
     let minScore = 99999;
     let minIndex;
     // console.log('')
@@ -67,8 +67,10 @@ function addVertex(distance, index) {
       A[i] = A[index] + VX[index][i];
       prev[i] = parseInt(index);
     }
-    //
   }
+  //doubt this shit
+  delete A[index];
+
   //update vertex adjent to source vertex
 }
 
