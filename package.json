@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.15"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nxhieu/Algorithm-Coursera.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nxhieu/Algorithm-Coursera/issues"
+  },
+  "homepage": "https://github.com/nxhieu/Algorithm-Coursera#readme"
 }

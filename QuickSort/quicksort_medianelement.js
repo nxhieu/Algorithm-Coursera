@@ -1,6 +1,6 @@
-const readInput = require('../utils/readInterger');
+const readInput = require("../utils/readInterger");
 
-const array = readInput('QuickSort', 'testcase.txt');
+const array = readInput("QuickSort", "testcase.txt");
 let loop = 0;
 //Quick sort function
 function quickSort(array, left, right) {
@@ -70,9 +70,9 @@ const counts = [0];
 
 quickSort(array, 0, array.length - 1);
 
-console.log(array);
+// console.log(array);
 
-console.log(counts);
+// console.log(counts);
 
 module.exports = quickSort;
 // console.log(Math.floor((5 - 4) / 2));
