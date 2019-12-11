@@ -19,12 +19,13 @@
 // You can assume that all numbers are positive. You should assume that item weights and the knapsack capacity are integers.
 
 // In the box below, type in the value of the optimal solution.
+//2493893
 
 // ADVICE: If you're not getting the correct answer, try debugging your algorithm using some small test cases. And then post them to the discussion forum!
 
 const readJob = require("../utils/readknap");
 
-const array = readJob("Dynamic-programming-knapsack", "knapsack1.txt");
+const array = readJob("Dynamic-programming-knapsack", "knapsack_big.txt");
 
 function computeCapacity(array) {
   let capacity = array[0].value;
