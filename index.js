@@ -6,18 +6,11 @@ const { Queue } = require('@datastructures-js/queue')
 
 
 
-/**
- * Pascal Triangle: 
- * 
- * @param {string} text
- * @return {number} 
- * 
- */
-function generate(numRows) {
-    for(let i = 0; i < numRows; i++)
 
+function minCostClimbingStairs(cost){
+    console.log(Queue); 
 }
 
-module.exports = generate;
+module.exports = minCostClimbingStairs;
 
 
